@@ -155,9 +155,9 @@ class compFamiliarController extends Controller
         foreach ($request->upload as $i){
             $doc = new documentos();
             $namefile = date('d-m-Y_H-m-s').'_'.$count.'.'.$i->extension();
-            $up = $i->storeAs('/'.'upload/'.$id,$namefile);
-            chmod(storage_path('/app/public/upload/'),0777);
-            chmod(storage_path('/app/public/upload/'.$id),0777);
+            $up = $i->storeAs('/'.'upload/receitas/'.$id,$namefile);
+            chmod(storage_path('/app/public/upload/receitas/'),0777);
+            chmod(storage_path('/app/public/upload/receitas/'.$id),0777);
             chmod(storage_path('app/public/'.$up),0777);
             $doc->old_name_doc = $i->getClientOriginalName();
             $doc->url_doc = $up;
