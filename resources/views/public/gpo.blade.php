@@ -128,8 +128,8 @@
                                 @if ($doc->grupo_familiar_id == $i->id)                                    
                                     <div class="col-sm-1">
                                             <div class="thumbnail">
-                                                <a download="" href="{{url('/').$doc->url_doc}}">
-                                                    <img src="{{url('/').$doc->url_doc}}" alt="" class="img-responsive img-thumbnail">
+                                                <a  href="{{url('/')."/storage/".$doc->url_doc}}">
+                                                    <img src="{{url('/')."/storage/".$doc->url_doc}}" alt="" class="img-responsive img-thumbnail">
                                                     <div class="caption">
                                                         <span class="text">{{$doc->old_name_doc}}</span>
                                                     </div>
