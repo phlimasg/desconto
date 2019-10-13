@@ -135,7 +135,7 @@ class grupoFamiliarController extends Controller
             $doc = new grupoFamiliarNewDocumentos();
             $namefile = date('d-m-Y_H-m-s').'_'.$count.'.'.$i->extension();
             $up = $i->storeAs('/'.'upload/despesas/'.$id,$namefile);
-            dd(storage_path(),$up);
+            //dd(storage_path(),$up);
             chmod(storage_path('/app/public/upload/despesas/'),0777);
             chmod(storage_path('/app/public/upload/despesas/'.$id),0777);
             chmod(storage_path('app/public/'.$up),0777);
