@@ -65,13 +65,13 @@ class acessoController extends Controller
 
     }
     public function painel($id){
-        $controle = candidato::where('id_cand', $id)        
+        $candidato = candidato::where('id_cand', $id)        
         ->first();
-            if($controle->controle_cand != 1){
+            if($candidato->controle_cand != 1){
                 candidato::where('id_cand', $id)
                     ->update(['controle_cand' => 1, 'status_id' => null, 'status_desc' => null]);
             } 
-            dd($controle->gpofamdesp);
-        return view('public.painel');
+            //dd($controle,$controle->gpofamdesp,$controle->irmaos,$controle->compFam,$controle->respFin,$controle->desconto);
+        return view('public.painel', compact('candidato'));
     }
 }

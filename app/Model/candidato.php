@@ -20,7 +20,7 @@ class candidato extends Model
     }
     public function respfin()
     {
-        return $this->hasMany(grupoFamiliarNew::class, 'candidato_id_cand','id_cand');
+        return $this->hasOne(respfin::class, 'candidato_id_cand','id_cand');
     }
     public function desconto()
     {

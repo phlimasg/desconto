@@ -24,6 +24,10 @@ class CreateCandidatosTable extends Migration
             $table->string('cidade_cand');
             $table->string('estado_cand');
             $table->integer('aluno_novo');
+            $table->integer('controle_cand')->nullable();
+            $table->string('status_desc')->nullable();
+            $table->string('desc_sug')->nullable();
+            $table->string('desc_aut')->nullable();
             $table->string('aluno_novo_origem_cand')->nullable();
             $table->string('desc_cand')->nullable();
             $table->string('escolaridade_cand');
