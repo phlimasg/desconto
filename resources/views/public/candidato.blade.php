@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-sm-3">
                     <label for="">Data de Nascimento:</label>
-                    <input type="text" class="form-control" name="dtnasc_cand" id="dtnasc" @if(!empty($candidato)) value="{{$candidato->dtnasc_cand}}" @endif>
+                <input type="text" class="form-control" name="dtnasc_cand" id="dtnasc" value="{{old('dtnasc_cand')}}">
                     <span class="msg-error">{{$errors->first('dtnasc_cand')}}</span>
                 </div>
                 <div class="col-sm-3">

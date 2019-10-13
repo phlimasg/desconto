@@ -1,16 +1,17 @@
 @extends('layouts.app')
 @section('content')
 <style>
-.panel-danger,.panel-primary,.panel-heading{
+.panel-danger,.panel-primary,.panel-heading,.alert{
     border-radius: 0px;
 }
 </style>
 <div class="container-fluid">
     <h1 class="title">Descontos Comerciais {{date('Y')+1}}</h1>
     <div class="alert alert-danger" >
-        <h4>AVISO</h4>        
+        <h4 style="font-size: 36px;"><span class="glyphicon glyphicon-flag"></span> AVISO</h4>        
         Solicitação nº {{$candidato->id_cand}} efetuada com sucesso. <br>
-        Agradecemos a inscrição e em breve disponibilizaremos o desconto aqui.        
+        Agradecemos a inscrição e assim que estiver liberado, o desconto estará disponível nessa página. <br>
+        
     </div>
     <div class="title2">
         Resumo da solicitação
@@ -60,9 +61,11 @@
             </div> 
             <div class="row">
                 <div class="col-sm-3"><b>Email:</b> {{$candidato->respfin->email_fin}}</div>
-                <div class="col-sm-3"><b>Vinculo:</b> {{$candidato->respfin->vinculo_fin}}</div>
-                <div class="col-sm-6"><b>Justificativa:</b> {{$candidato->respfin->just_fin}}</div>                    
+                <div class="col-sm-3"><b>Vinculo:</b> {{$candidato->respfin->vinculo_fin}}</div>                               
             </div>                           
+            <div class="row">
+                <div class="col-sm-6"><b>Justificativa:</b> {{$candidato->respfin->just_fin}}</div>     
+            </div>
         </div>
     </div>
 

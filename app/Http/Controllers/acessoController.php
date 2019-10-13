@@ -22,8 +22,11 @@ class acessoController extends Controller
         ]);
 
         // VERIFICA SE JÁ INICIOU O CADASTRO E REDIRECIONA
-        $consulta = candidato::where('id_cand',$request->acesso)->first();
-        if($consulta){
+        $consulta = candidato::where('id_cand',$request->acesso)->first(); 
+        if($consulta->controle_cand==1){
+            return redirect()->route('painel',['id' => $consulta->id_cand]);
+
+        }elseif($consulta){
             session_start();
             if(strlen($consulta->id_cand)<=5)
                 $_SESSION['id'] = '00000'.$consulta->id_cand;
@@ -36,7 +39,7 @@ class acessoController extends Controller
         $consulta = inscricao::where('NINSC','like','%'.$request->acesso)
             ->where('PAGAMENTO',1)
             ->where('ESCOLARIDADE','!=','EDUCACAO INFANTIL')
-            ->first();
+            ->first();            
         if ($consulta == null){
             if(date('Y-m-d')>= '2019-11-02'){
                 $totvs = totvs::where('RA', 'like','%'.$request->acesso)
@@ -44,18 +47,16 @@ class acessoController extends Controller
                     ->first();
             }
             else{
-                $totvs = totvs::where('RA', 'like','%'.$request->acesso)
-                    ->first();
+                $totvs = totvs::where('RA', 'like','%'.$request->acesso)->first();
             }
-
             if($totvs==null){
                 $mat ='Matrícula/Inscrição não encontrada.';
                 return view('public.acesso',compact('mat'));// ;
             }
             else{
                 session_start();
-                $_SESSION['id'] = $totvs->RA;
-                return redirect()->route('cIndex',['id' => $totvs->RA]);
+                $_SESSION['id'] = '00000'.$totvs->RA;                
+                return redirect()->route('cIndex',['id' => '00000'.$totvs->RA]);
             }
         }else{
             session_start();

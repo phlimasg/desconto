@@ -1,6 +1,39 @@
 <?php
 
 return [
+    'debug_blacklist' => [
+        '_ENV' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'DB_HOST',
+            'DB_PASSWORD_2',
+            'DB_HOST_2',
+            'DB_PASSWORD_3',
+            'DB_HOST_3',
+            'REDIS_PASSWORD',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_SERVER' => [
+            'APP_KEY',
+            'DB_PASSWORD',
+            'DB_HOST',
+            'DB_PASSWORD_2',
+            'DB_HOST_2',
+            'DB_PASSWORD_3',
+            'DB_HOST_3',
+            'REDIS_PASSWORD',
+            'MAIL_USERNAME',
+            'MAIL_PASSWORD',
+            'PUSHER_APP_KEY',
+            'PUSHER_APP_SECRET',
+        ],
+        '_POST' => [
+            'password',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------

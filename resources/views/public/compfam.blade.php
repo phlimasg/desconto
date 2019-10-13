@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-sm-2">
                         <label for="">Salário bruto:</label>
-                        <input class="form-control" id="salario_comp" type="text" name="salario_comp" value="{{old('salario_comp')}}">
+                        <input class="form-control" id="sal" type="text" name="salario_comp" value="{{old('salario_comp')}}">
                         <span class="msg-error">{{$errors->first('salario_comp')}}</span>
                     </div>
                 </div>
@@ -339,7 +339,7 @@
         </div>
     </div>
     <script>
-        $('#salario_comp').mask('000.000.000.000.000,00', {reverse: true});
+        $('#sal').mask('000.000.000.000.000,00', {reverse: true});
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });

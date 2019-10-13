@@ -63,10 +63,12 @@ class candidatoController extends Controller
     public function store(Request $request)
     {
         session_start();        
-        $request->dtnasc_cand = date('Y-d-m',strtotime($request->dtnasc_cand));
+        //$request->dtnasc_cand = date('Y-m-d',strtotime(str_replace('/', '-', $request->dtnasc_cand)));
+        $request->dtnasc_cand = date('Y-m-d',strtotime(str_replace('/', '-',$request->dtnasc_cand)));
+        //dd($request->dtnasc_cand,'1967-12-26');
         $request->validate([
             'nome_cand' => 'required|string|min:10,max:150',
-            'dtnasc_cand' => 'required|date',
+            'dtnasc_cand' => 'required',
             'tel_cand' => 'required|min:13,max:14',
             'cep_cand' => 'required|string|max:9',
             'rua_cand' => 'required|min:1,max:150',
