@@ -59,9 +59,9 @@ class filiacaoController extends Controller
     public function store(Request $request)
     {
         session_start();        
-        $request->dtnasc_t1 = date('Y-d-m',strtotime(str_replace('/', '-',$request->dtnasc_t1)));
+        $request->dtnasc_t1 = date('Y-m-d',strtotime(str_replace('/', '-',$request->dtnasc_t1)));
         if(!empty($request->dtnasc_t2))
-        $request->dtnasc_t2 = date('Y-d-m',strtotime(str_replace('/', '-',$request->dtnasc_t2)));
+        $request->dtnasc_t2 = date('Y-m-d',strtotime(str_replace('/', '-',$request->dtnasc_t2)));
         $request->validate([
             'nome_t1' => 'required|string|min:10,max:150',
             'dtnasc_t1' => 'required',
