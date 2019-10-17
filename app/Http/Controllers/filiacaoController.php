@@ -17,9 +17,9 @@ class filiacaoController extends Controller
     public function index($id)
     {
         session_start();
-        $cons = filiacao::where('candidato_id_cand',$id)->first();
-        if($cons){
-            return redirect()->route('finIndex',['id' => $_SESSION['id']]);
+        $fil = filiacao::where('candidato_id_cand',$id)->first();
+        if($fil){
+            return view('public.filiacao', compact('fil'));
         }
         $q = inscricao::where('NINSC',$id)->first();
         //dd($q);
@@ -146,6 +146,11 @@ class filiacaoController extends Controller
             'numeric' => 'Somente números',
         ]);
 
+        $fil = filiacao::where('candidato_id_cand',$_SESSION['id'])->first();
+        if($fil){
+            $this->update($request, $_SESSION['id']);
+            return redirect()->route('finIndex',['id' => $_SESSION['id']]);
+        }
 
         $filiacao = new filiacao();
         $filiacao->candidato_id_cand = $_SESSION['id'];
@@ -196,7 +201,19 @@ class filiacaoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        filiacao::where('candidato_id_cand',$_SESSION['id'])->update([
+            'nome_t1' => $request->nome_t1,
+            'cpf_t1' => $request->cpf_t1,
+            'rg_t1' => $request->rg_t1,
+            'dtnasc_t1' => $request->dtnasc_t1,
+            'rd_t1' => $request->rd_t1,
+            'nome_t2' => $request->nome_t2,
+            'cpf_t2' => $request->cpf_t2,
+            'rg_t2' => $request->rg_t2,
+            'dtnasc_t2' => $request->dtnasc_t2,
+            'rd_t2' => $request->rd_t2
+        ]);
+        
     }
 
     /**

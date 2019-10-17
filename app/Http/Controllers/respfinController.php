@@ -17,9 +17,9 @@ class respfinController extends Controller
     public function index($id)
     {
         session_start();
-        $fin = respfin::where('candidato_id_cand',$id)->first();
-        if($fin){
-        return redirect()->route('gpoIndex',['id' => $_SESSION['id']]);
+        $dados = respfin::where('candidato_id_cand',$id)->first();
+        if($dados){
+            return view('public.respfin', compact('dados'));
         }
 
         $q = inscricao::where('NINSC',$id)->first();
@@ -111,7 +111,11 @@ class respfinController extends Controller
             'max' => 'Mínimo de :max de caracteres',
             'numeric' => 'Somente números',
         ]);
-
+        $resp = respfin::where('candidato_id_cand',$id)->first();
+        if($resp){
+            $this->update($request, $_SESSION['id']);
+            return redirect()->route('gpoIndex',['id' => $_SESSION['id']]);
+        }
         $resp = new respfin();
         $resp->candidato_id_cand = $id;
         $resp->nome_fin = $request->nome_fin;
@@ -160,7 +164,19 @@ class respfinController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        if(strcasecmp($request->vinculo_fin,"0")==0)
+            $vinculo = $request->txt_vinc_fin;
+        else
+            $vinculo = $request->vinculo_fin;
+        respfin::where('candidato_id_cand',$_SESSION['id'])->update([            
+            'nome_fin' => $request->nome_fin,
+            'cpf_fin' => $request->cpf_fin,
+            'tel1_fin' => $request->tel1_fin,
+            'tel2_fin' => $request->tel2_fin,
+            'email_fin' => $request->email_fin,
+            'just_fin' => $request->just_fin,
+            'vinculo_fin' => $vinculo
+        ]);
     }
 
     /**

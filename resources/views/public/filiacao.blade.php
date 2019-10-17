@@ -7,6 +7,14 @@
         </div>
     </div>
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li><a href="{{ route('cIndex', ['id'=>$_SESSION['id']]) }}">Identificação do Aluno</a></li>                          
+                    <li class="active">Filiação</li>
+                </ol>
+            </div>
+        </div>
     <div class="title2">
         Filiação (Identificação dos responsáveis legais/tutores)
     </div>
@@ -32,12 +40,12 @@
                 </div>
                 <div class="col-sm-2">
                     <label for="">RG:</label>
-                    <input type="input" class="form-control" name="rg_t1" value="{{old('rg_t1')}}" id="rg_t1">
+                    <input type="input" class="form-control" name="rg_t1" value="{{$fil->rg_t1}}" id="rg_t1">
                     <span class="msg-error">{{$errors->first('rg_t1')}}</span>
                 </div>
                 <div class="col-sm-2">
                     <label for="">Data de Nasc.:</label>
-                    <input type="text" id="dtnasc_t1" class="form-control" name="dtnasc_t1" value="{{$fil->dtnasc_t1}}">
+                    <input type="text" id="dtnasc_t1" class="form-control" name="dtnasc_t1" value="@if(!empty($fil->dtnasc_t1)) {{date('d/m/Y',strtotime($fil->dtnasc_t1))}} @endif">
                     <span class="msg-error">{{$errors->first('dtnasc_t1')}}</span>
                 </div>
             </div>
@@ -69,17 +77,17 @@
                 </div>
                 <div class="col-sm-2">
                     <label for="">CPF:</label>
-                    <input type="input" class="form-control" name="cpf_t2" id="cpf_t2" value="{{old('cpf_t2')}}{{$fil->cpf_t2}}">
+                    <input type="input" class="form-control" name="cpf_t2" id="cpf_t2" value="@if(!old('cpf_t2')){{$fil->cpf_t2}}@else {{old('cpf_t2')}}@endif">
                     <span class="msg-error">{{$errors->first('cpf_t2')}}</span>
                 </div>
                 <div class="col-sm-2">
                     <label for="">RG:</label>
-                    <input type="input" class="form-control" name="rg_t2" id="rg_t2" value="{{old('rg_t2')}}">
+                    <input type="input" class="form-control" name="rg_t2" id="rg_t2" value="@if(!old('rg_t2')){{$fil->rg_t2}}@else {{old('rg_t2')}}@endif">
                     <span class="msg-error">{{$errors->first('rg_t2')}}</span>
                 </div>
                 <div class="col-sm-2">
                     <label for="">Data de Nasc.:</label>
-                    <input type="text" id="dtnasc_t2" class="form-control" name="dtnasc_t2" value="{{old('dtnasc_t2')}}{{$fil->dtnasc_t2}}">
+                    <input type="text" id="dtnasc_t2" class="form-control" name="dtnasc_t2" value="@if(!empty($fil->dtnasc_t2)) {{date('d/m/Y',strtotime($fil->dtnasc_t2))}} @endif">
                     <span class="msg-error">{{$errors->first('dtnasc_t2')}}</span>
                 </div>
             </div>

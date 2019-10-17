@@ -7,6 +7,13 @@
         </div>
     </div>
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li>Identificação do Aluno</li>                          
+                </ol>
+            </div>
+        </div>
     <div class="title2">
         Identificação do Aluno/Candidato
     </div>    
@@ -20,7 +27,7 @@
                 </div>
                 <div class="col-sm-3">
                     <label for="">Data de Nascimento:</label>
-                <input type="text" class="form-control" name="dtnasc_cand" id="dtnasc" value="{{old('dtnasc_cand')}}">
+                <input type="text" class="form-control" name="dtnasc_cand" id="dtnasc" value="@if(!empty($candidato->dtnasc_cand)) {{date('d/m/Y',strtotime($candidato->dtnasc_cand))}} @endif">
                     <span class="msg-error">{{$errors->first('dtnasc_cand')}}</span>
                 </div>
                 <div class="col-sm-3">

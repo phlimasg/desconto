@@ -8,6 +8,15 @@
         </div>
     </div>
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li><a href="{{ route('cIndex', ['id'=>$_SESSION['id']]) }}">Identificação do Aluno</a></li>                          
+                    <li><a href="{{ route('fIndex', ['id'=>$_SESSION['id']]) }}"> Filiação</a></li>
+                    <li>Responsável Financeiro</li>
+                </ol>
+            </div>
+        </div>
     <div class="title2">
         Responsável Financeiro
     </div>
@@ -52,14 +61,14 @@
                 </div>
                 <div class="col-sm-2" hidden id="txt_outro">
                     <label for="">Especifique:</label>
-                    <input type="text" class="form-control" name="txt_vinc_fin">
+                    <input type="text" class="form-control" name="txt_vinc_fin" value="{{$dados->vinculo_fin}}">
                     <span class="msg-error">{{$errors->first('txt_vinc_fin')}}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <label for="">Justificativa do pedido:</label>
-                    <textarea name="just_fin" id="" cols="30" rows="5" maxlength="250" class="form-control">{{old('just_fin')}}</textarea>
+                    <textarea name="just_fin" id="" cols="30" rows="5" maxlength="250" class="form-control">{{$dados->just_fin}}</textarea>
                     <span class="msg-error">{{$errors->first('just_fin')}}</span>
                 </div>
             </div>

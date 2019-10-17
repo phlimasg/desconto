@@ -12,10 +12,10 @@ class candidatoController extends Controller
 {
     public function index($id){
         session_start();
-        $candidato = candidato::where('id_cand',$id)->first();
-        
+        $candidato = candidato::where('id_cand',$id)->first();          
         if($candidato)
-            return redirect()->route('fIndex',['id' => $_SESSION['id']]);
+            return view('public.candidato',compact('candidato'));
+            //return redirect()->route('fIndex',['id' => $_SESSION['id']]);
         $dados = totvs::where('RA',$id)->first();
         if($dados){
             $candidato = new candidato();
@@ -90,6 +90,11 @@ class candidatoController extends Controller
             'numeric' => 'Somente números',
         ]);
         //dd($request->all());
+        $candidato = candidato::where('id_cand',$_SESSION['id'])->first();
+        if($candidato){
+            $this->update($request, $_SESSION['id']);
+            return redirect()->route('fIndex',['id' => $_SESSION['id']]);
+        }
         $candidato = new candidato();
         $candidato->id_cand = $_SESSION['id'];
         $candidato->nome_cand = $request->nome_cand;
@@ -152,7 +157,24 @@ class candidatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $candidato = candidato::where('id_cand',$id)->update([
+            'nome_cand' => $request->nome_cand,
+            'dtnasc_cand' => $request->dtnasc_cand,
+            'tel_cand' => $request->tel_cand,
+            'cep_cand' => $request->cep_cand,
+            'rua_cand' =>$request->rua_cand,
+            'bairro_cand' => $request->bairro_cand,
+            'cidade_cand' => $request->cidade_cand,
+            'estado_cand' => $request->estado_cand,
+            'aluno_novo' => $request->aluno_novo,
+            'aluno_novo_origem_cand' => $request->aluno_novo_origem_cand,
+            'desc_cand' => $request->desc_cand,
+            'escolaridade_cand' => $request->escolaridade_cand,
+            'deficiencia_cand' => $request->deficiencia_cand,
+            'controle_cand' => null,
+            'status_id' => null,
+            'status_desc' => null
+        ]);        
     }
 
     /**

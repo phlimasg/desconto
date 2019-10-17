@@ -8,8 +8,19 @@
         </div>
     </div>
     <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <ol class="breadcrumb">
+                    <li><a href="{{ route('cIndex', ['id'=>$_SESSION['id']]) }}">Identificação do Aluno</a></li>                          
+                    <li><a href="{{ route('fIndex', ['id'=>$_SESSION['id']]) }}"> Filiação</a></li>
+                    <li><a href="{{ route('finIndex', ['id'=>$_SESSION['id']]) }}"> Responsável Financeiro </a></li>
+                    <li><a href="{{ route('gpoIndex', ['id'=>$_SESSION['id']]) }}"> Grupo Familiar - Despesas </a></li>
+                    <li>Composição Familiar - Receitas</li>
+                </ol>
+            </div>
+        </div>
     <div class="title2">
-        Composição Familiar
+        Composição Familiar - Receitas
     </div>
         <form action="{{route('compSave',['id'=>$_SESSION['id']])}}" method="post">
             @csrf
