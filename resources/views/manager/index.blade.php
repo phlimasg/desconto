@@ -15,8 +15,8 @@
                         {{ strtoupper( $c->nome_cand)}}
                     </div>
                     <div class="col-sm-1">
-                        <label for="">Solicitação</label><br>
-                        {{date('d/m/Y', strtotime($c->date))}}
+                        <label for="">Solicitação</label><br>                        
+                        {{date('d/m/Y', strtotime($c->created_at))}}
                     </div>
                     <div class="col-sm-1">
                         <label for="">Percentual</label><br>
