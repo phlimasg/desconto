@@ -15,6 +15,7 @@ use App\Model\status;
 use App\Model\totvs;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Model\grupoFamiliarNew;
 use Maatwebsite\Excel\Facades\Excel;
 use DB;
 use Mpdf\Mpdf;
@@ -22,17 +23,17 @@ use Mpdf\Mpdf;
 class candidatoController extends Controller
 {
     public function index($id,$mat){
-        $c = candidato::where('id_cand',$mat)
+        $candidato = candidato::where('id_cand',$mat)
             ->first();
         $ir = totvs::whereIn(DB::raw('CAST(RA AS INT)'),candidatos_irmao::select('mat_insc_ci')->where('candidato_id_cand',$mat)->get())
             ->get();
         $comp = composicaoFamiliar::where('candidato_id_cand',$mat)->get();
         $doc = documentos::whereIn('composicaofamiliar_id_comp',composicaoFamiliar::select('id_comp')->where('candidato_id_cand',$mat)->get())->get();
         $fil = filiacao::where('candidato_id_cand',$mat)->first();
-        $gpo = grupoFamiliar::where('candidato_id_cand',$mat)->first();
+        $gpo = grupoFamiliarNew::where('candidato_id',$mat)->first();
         $resp = respfin::where('candidato_id_cand',$mat)->first();
         $desc_sug= descontoSugerido::where('candidato_id_cand',$mat)->orderBy('created_at')->first();
-        return view('manager.candidato', compact(['c','ir','comp','doc','fil','gpo','resp','desc_sug']));
+        return view('manager.candidato', compact(['candidato','ir','comp','doc','fil','gpo','resp','desc_sug']));
     }
     public function descontoSugerido($id,$mat, Request $request){
         $request->validate([

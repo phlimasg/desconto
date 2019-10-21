@@ -35,24 +35,24 @@
             <div class="row">
                 <div class="col-sm-4">
                     <b>Nome: </b> <br>
-                    {{$c->nome_cand}}
+                    {{$candidato->nome_cand}}
                 </div>
                 <div class="col-sm-1">
                     <b>Dt. Nasc.: </b> <br>
-                    {{date('d/m/Y', strtotime($c->dtnasc_cand))}}
+                    {{date('d/m/Y', strtotime($candidato->dtnasc_cand))}}
                 </div>
                 <div class="col-sm-2">
                     <b>Tel.: </b> <br>
-                    {{$c->tel_cand}}
+                    {{$candidato->tel_cand}}
                 </div>
                 <div class="col-sm-1">
                     <b>Desconto: </b> <br>
-                    @if(strstr($c->desc_cand,'%')!=false)
-                    <span class="text-info">{{$c->desc_cand}}</span>
-                    @elseif($c->desc_cand != null)
-                        <span class="text-info">{{$c->desc_cand}}%</span>
+                    @if(strstr($candidato->desc_cand,'%')!=false)
+                    <span class="text-info">{{$candidato->desc_cand}}</span>
+                    @elseif($candidato->desc_cand != null)
+                        <span class="text-info">{{$candidato->desc_cand}}%</span>
                     @endif
-                    @if($c->desc_cand ==null)
+                    @if($candidato->desc_cand ==null)
                         Não tem
                     @endif
                 </div>
@@ -60,26 +60,26 @@
             <div class="row">
                 <div class="col-sm-2">
                     <b>Aluno Novo?</b><br>
-                    @if($c->aluno_novo==1)
+                    @if($candidato->aluno_novo==1)
                             Sim
                     @else
                             Não
                     @endif
                 </div>
-                @if($c->aluno_novo==1)
+                @if($candidato->aluno_novo==1)
                     <div class="col-sm-2">
                         <b>Origem:</b> <br>
-                        {{$c->aluno_novo_origem_cand}}
+                        {{$candidato->aluno_novo_origem_cand}}
                     </div>
                 @endif
                 <div class="col-sm-2">
                     <b>Escolaridade: </b> <br>
-                    {{$c->escolaridade_cand}}
+                    {{$candidato->escolaridade_cand}}
                 </div>
                 <div class="col-sm-4">
                     <b>Deficiência: </b> <br>
-                    @if($c->deficiencia_cand != null)
-                        {{$c->deficiencia_cand}}
+                    @if($candidato->deficiencia_cand != null)
+                        {{$candidato->deficiencia_cand}}
                     @else
                         n/a
                     @endif
@@ -123,23 +123,23 @@
             <div class="row">
                 <div class="col-sm-1">
                     <b>Cep:</b><br>
-                    {{$c->cep_cand}}
+                    {{$candidato->cep_cand}}
                 </div>
                 <div class="col-sm-3">
                     <b>Endereço: </b><br>
-                    {{$c->rua_cand}}
+                    {{$candidato->rua_cand}}
                 </div>
                 <div class="col-sm-1">
                     <b>Bairro: </b><br>
-                    {{$c->bairro_cand}}
+                    {{$candidato->bairro_cand}}
                 </div>
                 <div class="col-sm-1">
                     <b>Cidade: </b><br>
-                    {{$c->cidade_cand}}
+                    {{$candidato->cidade_cand}}
                 </div>
                 <div class="col-sm-1">
                     <b>Estado: </b><br>
-                    {{$c->estado_cand}}
+                    {{$candidato->estado_cand}}
                 </div>
                 <div class="col-sm-1">
                     <a href="" data-toggle="modal" data-target="#maps">
@@ -233,161 +233,135 @@
     </div>
 
 
-    <div class="panel panel-default">
-        <div class="panel-heading panel-default"><h4>Informações do Grupo Familiar</h4></div>
-        @if(!empty($gpo))
+    <div class="panel panel-danger">
+        <div class="panel-heading panel-default"><h4>Informações do Grupo Familiar - Despesas</h4></div>
+        @if(!empty($candidato->gpofamdesp))
         <div class="panel-body">
-            <b>DESPESAS NO ÚLTIMO MÊS</b>
-            <div class="row">
-                    @if($gpo->aluguel_desp != null)
-                    <div class="col-sm-2">
-                        <b>Aluguel:</b><br>
-                    R$ {{$gpo->aluguel_desp}},00
-                    </div>
-                    @endif
-                    @if($gpo->casa_desp != null)
-                        <div class="col-sm-2">
-                            <b>Casa:</b><br>
-                            R$ {{$gpo->casa_desp}},00
-                        </div>
-                    @endif
-                    @if($gpo->cond_desp != null)
-                        <div class="col-sm-2">
-                            <b>Condomínio:</b><br>
-                            R$ {{$gpo->cond_desp}},00
-                        </div>
-                    @endif
-                    @if($gpo->cart_desp != null)
-                        <div class="col-sm-2">
-                            <b>Cartão:</b><br>
-                            R$ {{$gpo->cart_desp}},00
-                        </div>
-                    @endif
-                    @if($gpo->conv_desp != null)
-                        <div class="col-sm-2">
-                            <b>Convênio:</b><br>
-                            R$ {{$gpo->conv_desp}},00
-                        </div>
-                    @endif
-                    @if($gpo->ensino_desp != null)
-                        <div class="col-sm-2">
-                            <b>Ensino:</b><br>
-                            R$ {{$gpo->ensino_desp}},00
-                        </div>
-                    @endif
-                        @if($gpo->auto_fin_desp != null)
-                            <div class="col-sm-2">
-                                <b>Fin. Auto:</b><br>
-                                R$ {{$gpo->auto_fin_desp}},00
-                            </div>
-                        @endif
-                        @if($gpo->imovel_fin_desp != null)
-                            <div class="col-sm-2">
-                                <b>Fin. Imovel:</b><br>
-                                R$ {{$gpo->imovel_fin_desp}},00
-                            </div>
-                        @endif
-                        @if($gpo->despesas_outros_desp != null)
-                            <div class="col-sm-2">
-                                <b>Outros:</b><br>
-                                R$ {{$gpo->despesas_outros_desp}},00
-                            </div>
-                        @endif
-            </div>
-            <br>
-            <b>RENDA AGREGADA NO ÚLTIMO MÊS</b>
-            <div class="row">
-                @if($gpo->pensao_desp != null)
-                    <div class="col-sm-1">
-                        <b>Pensão:</b><br>
-                        R$ {{$gpo->pensao_desp}},00
-                    </div>
-                @endif
-                    @if($gpo->alug_receb_desp != null)
-                        <div class="col-sm-2">
-                            <b>Rec. Alugel:</b><br>
-                            R$ {{$gpo->alug_receb_desp}},00
-                        </div>
-                    @endif
-                    @if($gpo->renda_outros_desp != null)
-                        <div class="col-sm-1">
-                            <b>Outros:</b><br>
-                            R$ {{$gpo->renda_outros_desp}},00
-                        </div>
-                    @endif
-            </div>
-            @endif
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading panel-default"><h4>Composição Familiar</h4></div>
-        <div class="panel-body">
-                @foreach($comp as $cm)
+            @php($despesas =0)                    
+            @foreach ($candidato->gpofamdesp as $i)
                 <div class="row">
-                <div class="col-sm-4">
-                    <b>Nome:</b><br>
-                    {{$cm->nome_comp}}
-                </div>
-                    <div class="col-sm-1">
-                        <b>Idade:</b><br>
-                        {{$cm->idade_comp}}
-                    </div>
-                    <div class="col-sm-1">
-                        <b>Idade:</b><br>
-                        {{$cm->parentesco_comp}}
-                    </div>
-                    <div class="col-sm-2">
-                        <b>Escolaridade:</b><br>
-                        {{$cm->escolaridade_comp}}
-                    </div><div class="col-sm-1">
-                        <b>Profissão:</b><br>
-                        {{$cm->profissao_comp}}
-                    </div><div class="col-sm-1">
-                        <b>Salario:</b><br>
-                        R$ {{$cm->salario_comp}},00
-                    </div>
+                    <div class="col-sm-2"><b>Valor:</b> R${{$i->despesas}}</div>
+                    <div class="col-sm-4"><b>Tipo:</b> {{$i->tipo}}</div>                
+                    <div class="col-sm-6"><b>Descrição:</b> {{$i->descricao}}</div>                
                 </div>
                 <div class="well">
-                <b>Anexos:</b>
-                <div class="row">
-                    @foreach($doc as $d)
-                        @if($d->composicaofamiliar_id_comp == $cm->id_comp)
-                            <div class="col-sm-1 ">
-                                @if(strstr($d->url_doc,'.pdf') != false)
-                                    <a href="{{asset('/storage/').'/'.$d->url_doc}}" target="_blank">
-                                        <img src="{{asset('/img/pdf.png')}}" alt="" class="img-responsive">
-                                        <span class="text">{{$d->old_name_doc}}</span>
-                                    </a>
-                                    @else
-                                    <a href="#" data-toggle="modal" data-target="#{{$d->id_doc}}">
-                                        <img src="{{asset('/storage/').'/'.$d->url_doc}}" alt="" class="img-responsive">
-                                        <span class="text">{{$d->old_name_doc}}</span>
-                                    </a>
-                                    <div class="modal fade" id="{{$d->id_doc}}" role="dialog">
-                                        <div class="modal-dialog modal-lg">
+                    Anexos: <br>
+                    <div class="row">
+                            @forelse ($i->documentos as $doc)
+                            <div class="col-sm-1">
+                                @if(strstr($doc->url_doc,'.pdf') != false)
+                                <a href="{{asset('/storage/').'/'.$doc->url_doc}}" target="_blank">
+                                    <img src="{{asset('/img/pdf.png')}}" alt="" class="img-responsive">
+                                    <span class="text">{{$doc->old_name_doc}}</span>
+                                </a>
+                                @else
+                                <a href="#" data-toggle="modal" data-target="#{{$doc->id}}">
+                                    <img src="{{asset('/storage/').'/'.$doc->url_doc}}" alt="" class="img-responsive">
+                                    <span class="text">{{$doc->old_name_doc}}</span>
+                                </a>
+                                <div class="modal fade" id="{{$doc->id}}" role="dialog">
+                                    <div class="modal-dialog modal-lg">
 
-                                            <!-- Modal content-->
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <img src="{{asset('/storage/').'/'.$d->url_doc}}" alt="" class="img-responsive">
-                                                </div>
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
-
+                                            <div class="modal-body">
+                                                <img src="{{asset('/storage/').'/'.$doc->url_doc}}" alt="" class="img-responsive">
+                                            </div>
                                         </div>
+
                                     </div>
-                                @endif
+                                </div>
+                                @endif                               
                             </div>
-                        @endif
-                    @endforeach
+                            @empty
+                            <div class="alert alert-danger">
+                                Nenhum anexo!
+                            </div>
+                            @endforelse
+                    </div>
                 </div>
-                </div>
-                @endforeach
+            @php($despesas += floatval(str_replace(['.',','],'',$i->despesas)))                    
+            @endforeach                                          
         </div>
+        <div class="panel-footer">
+            @php($tam = strlen($despesas))            
+            Valor total de despesas: <b class="text-danger">R$ {{substr($despesas, 0, ($tam-2))}},{{substr($despesas, ($tam-2))}}</b>
+        </div>
+        @endif
     </div>
+
+    <div class="panel panel-primary">
+        <div class="panel-heading panel-default"><h4>Composição Familiar - Receitas</h4></div>
+            <div class="panel-body">
+                @php($receitas =0)                                            
+                @foreach ($candidato->compFam as $i)
+                <div class="row">
+                    <div class="col-sm-3"><b>Nome:</b> {{$i->nome_comp}}</div>
+                    <div class="col-sm-3"><b>Parentesco:</b> {{$i->parentesco_comp}}</div>                
+                    <div class="col-sm-2"><b>Idade:</b> {{$i->idade_comp}}</div>
+                    <div class="col-sm-2"><b>Escol.:</b> {{$i->escolaridade_comp}}</div> 
+                    <div class="col-sm-2"><b>Profissão.:</b> {{$i->profissao_comp}}</div>                     
+                </div>
+                <div class="row">
+                    <div class="col-sm-2"><b>Salário:</b> {{$i->salario_comp}}</div> 
+                </div>
+                <div class="well">
+                    <b>Anexos:</b><br>
+                    <div class="row">
+                        @forelse ($i->documentos as $doc)
+                            <div class="col-sm-1">
+                                @if(strstr($doc->url_doc,'.pdf') != false)
+                                <a href="{{asset('/storage/').'/'.$doc->url_doc}}" target="_blank">
+                                    <img src="{{asset('/img/pdf.png')}}" alt="" class="img-responsive">
+                                    <span class="text">{{$doc->old_name_doc}}</span>
+                                </a>
+                                @else
+                                <a href="#" data-toggle="modal" data-target="#{{$doc->id_doc}}">
+                                    <img src="{{asset('/storage/').'/'.$doc->url_doc}}" alt="" class="img-responsive">
+                                    <span class="text">{{$doc->old_name_doc}}</span>
+                                </a>
+                                <div class="modal fade" id="{{$doc->id_doc}}" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{asset('/storage/').'/'.$doc->url_doc}}" alt="" class="img-responsive">
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                @endif                               
+                            </div>
+                            @empty
+                            <div class="alert alert-danger">
+                                Nenhum anexo!
+                            </div>
+                            @endforelse                    
+                        </div>
+                        @php($receitas += floatval(str_replace(['.',','],'',$i->salario_comp)))                            
+                    </div>
+                @endforeach 
+        </div>
+        <div class="panel-footer">
+                @php($tam = strlen($receitas))            
+                Valor total de receitas: <b class="text-danger">R$ {{substr($receitas, 0, ($tam-2))}},{{substr($receitas, ($tam-2))}}</b>
+            </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    
+        
+                
+        
 
     <div class="modal fade" id="desc" role="dialog">
         <div class="modal-dialog modal-lg">
@@ -477,7 +451,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>Definir valor do desconto?</h4>Valor Sugerido: {{$c->desc_cand}}
+                    <h4>Definir valor do desconto?</h4>Valor Sugerido: {{$candidato->desc_cand}}
                 </div>
                 <div class="modal-body">
                     <form action="{{route('descAutCandidato',['id' => Request::segment(2),'mat' => Request::segment(4)])}}" method="post">
@@ -510,10 +484,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{$c->rua_cand}}, {{$c->bairro_cand}}, {{$c->cidade_cand}} - {{$c->estado_cand}}</h4>
+                    <h4 class="modal-title">{{$candidato->rua_cand}}, {{$candidato->bairro_cand}}, {{$candidato->cidade_cand}} - {{$candidato->estado_cand}}</h4>
                 </div>
                 <div class="modal-body">
-                    <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAKMSC_EIuFZs6wsF820Ek4NRf1czJ9j-8&q={{$c->rua_cand}}+{{$c->bairro_cand}}+{{$c->cidade_cand}}+{{$c->estado_cand}}" allowfullscreen>
+                    <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAKMSC_EIuFZs6wsF820Ek4NRf1czJ9j-8&q={{$candidato->rua_cand}}+{{$candidato->bairro_cand}}+{{$candidato->cidade_cand}}+{{$candidato->estado_cand}}" allowfullscreen>
                     </iframe>
                 </div>
             </div>

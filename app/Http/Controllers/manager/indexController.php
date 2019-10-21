@@ -11,18 +11,20 @@ class indexController extends Controller
 {
 
     public function index(){
-        $candidato = candidato::join('grupo_familiars','candidatos.id_cand','=','grupo_familiars.candidato_id_cand')
+        $candidato = candidato::
+        /*join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
             //->join('statuses','status_id','=','statuses.id')
             ->selectRaw('*,candidatos.created_at as date')
-            ->where('status_desc','')
-            //->whereRaw('status_desc IS NULL')
-            ->orderBy('candidatos.created_at','asc')
+            //->where('status_desc','')
+            ->*/orderBy('candidatos.created_at','asc')
+            ->whereRaw('status_desc IS NULL')
             ->paginate(20);
+            //dd($candidato);
         return view('manager.index', compact('candidato'));
     }
 
     public function search(Request $request){
-        $candidato = candidato::join('grupo_familiars','candidatos.id_cand','=','grupo_familiars.candidato_id_cand')
+        $candidato = candidato::join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
             ->selectRaw('*,candidatos.created_at as date')
             ->where('candidatos.nome_cand','like','%'.$request->busca.'%')
             ->orWhere('candidatos.id_cand','like','%'.$request->busca)
@@ -34,7 +36,7 @@ class indexController extends Controller
     }
     public function status($id,$id_status){
         $st = status::where('id', $id_status)->first();
-        $candidato = candidato::join('grupo_familiars','candidatos.id_cand','=','grupo_familiars.candidato_id_cand')
+        $candidato = candidato::join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
             ->selectRaw('*,candidatos.created_at as date')
             ->where('status_id',$id_status)
             ->orderBy('candidatos.created_at','asc')
