@@ -36,11 +36,15 @@ class indexController extends Controller
     }
     public function status($id,$id_status){
         $st = status::where('id', $id_status)->first();
-        $candidato = candidato::join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
+
+        $candidato = candidato::
+        /*join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
+            //->join('statuses','status_id','=','statuses.id')
             ->selectRaw('*,candidatos.created_at as date')
+            //->where('status_desc','')
+            ->*/orderBy('candidatos.updated_at','asc')
             ->where('status_id',$id_status)
-            ->orderBy('candidatos.created_at','asc')
-            ->paginate(20);
+            ->paginate(20);        
         return view('manager.index', compact(['candidato','st']));
     }
 }
