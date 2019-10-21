@@ -58,9 +58,14 @@ class candidatoController extends Controller
             'autorizado' => 'required'
         ]);
         candidato::where('id_cand',$mat)
-            ->update(['desc_aut' => $request->autorizado, 'status_id' => '3', 'status_desc' => 'Deferido']);
+            ->update([
+                'desc_aut' => $request->autorizado, 
+                'status_id' => '3', 
+                'status_desc' => 'Deferido',
+                'parecer'=> $request->parecer
+                ]);
         $desc = new descontoAutorizado();
-        $desc->valor_aut = $request->autorizado;
+        $desc->valor_aut = $request->autorizado;        
         $desc->usuario_aut = auth()->user()->email;
         $desc->candidato_id_cand = $mat;
         $desc->save();

@@ -451,17 +451,23 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4>Definir valor do desconto?</h4>Valor Sugerido: {{$candidato->desc_cand}}
+                    <h4>Definir valor do desconto?</h4>Desconto que já possui: {{$candidato->desc_cand}}
                 </div>
                 <div class="modal-body">
                     <form action="{{route('descAutCandidato',['id' => Request::segment(2),'mat' => Request::segment(4)])}}" method="post">
                         @csrf
                         <div class="row">
                             <div class="col-sm-3">
-                                <label for="">Valor a ser definido:</label>
-                                <input type="text" class="form-control" name="autorizado">
+                                <label for="">Valor a ser autorizado:</label>
+                                <input type="text" class="form-control" name="autorizado" value="{{$candidato->desc_aut}}">
                             </div>
                         </div>
+                        <div class="row">
+                                <div class="col-sm-12">
+                                    <label for="">Parecer descritivo:</label>
+                                    <textarea rows="5" class="form-control" name="parecer">{{$candidato->parecer}}</textarea>
+                                </div>
+                            </div>
                         <br>
                         <div class="row text-center">
                             <div class="col-sm-1">
