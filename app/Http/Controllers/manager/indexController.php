@@ -24,9 +24,7 @@ class indexController extends Controller
     }
 
     public function search(Request $request){
-        $candidato = candidato::join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
-            ->selectRaw('*,candidatos.created_at as date')
-            ->where('candidatos.nome_cand','like','%'.$request->busca.'%')
+        $candidato = candidato::where('candidatos.nome_cand','like','%'.$request->busca.'%')
             ->orWhere('candidatos.id_cand','like','%'.$request->busca)
             ->orderBy('candidatos.created_at','asc')
             //->toSql();
