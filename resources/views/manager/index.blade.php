@@ -10,6 +10,10 @@
         @foreach ($candidato as $c)
             <div class="well well-lg" style="border: 1px;">
                 <div class="row">
+                    <div class="col-sm-1">
+                        <label for="">Id</label><br>
+                        {{ strtoupper( $c->id_cand)}}
+                    </div>
                     <div class="col-sm-4">
                         <label for="">Candidato</label><br>
                         {{ strtoupper( $c->nome_cand)}}
