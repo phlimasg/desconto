@@ -6,13 +6,22 @@
 }
 </style>
 <div class="container-fluid">
-    <h1 class="title">Descontos Comerciais {{date('Y')+1}}</h1>
-    <div class="alert alert-danger" >
-        <h4 style="font-size: 36px;"><span class="glyphicon glyphicon-flag"></span> AVISO</h4>        
-        Solicitação nº {{$candidato->id_cand}} efetuada com sucesso. <br>
-        Agradecemos a inscrição e assim que estiver liberado, o desconto estará disponível nessa página. <br>
-        
-    </div>
+    <h1 class="title">Descontos Comerciais {{date('Y')+1}}</h1>    
+    @if ($candidato->status_desc == 'Deferido')
+        <div class="alert alert-success" >
+            STATUS: <b>{{$candidato->status_desc}}</b>
+            <h1>Disponibilizamos {{$candidato->desc_aut}}% de desconto</h1>
+                Estamos muito felizes em trazer esta notícia! Analisamos sua solicitação de desconto comercial e ela foi autorizada!    
+        </div> 
+    @else
+        <div class="alert alert-danger" >
+                STATUS: <b>{{$candidato->status_desc}}</b>
+            <h4 style="font-size: 36px;"><span class="glyphicon glyphicon-flag"></span> AVISO</h4>        
+            Solicitação nº {{$candidato->id_cand}} efetuada com sucesso. <br>
+            Agradecemos a inscrição e assim que estiver liberado, o desconto estará disponível nessa página. <br>        
+        </div>        
+    @endif
+
     <div class="title2">
         Resumo da solicitação
     </div>

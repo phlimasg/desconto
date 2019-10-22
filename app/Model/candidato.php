@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class candidato extends Model
 {
+    protected $primaryKey = 'id_cand';
     public function irmaos()
     {
         return $this->hasMany(candidatos_irmao::class, 'candidato_id_cand','id_cand');
