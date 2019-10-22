@@ -15,8 +15,8 @@ class indexController extends Controller
         /*join('grupo_familiar_news','candidatos.id_cand','=','grupo_familiar_news.candidato_id')
             //->join('statuses','status_id','=','statuses.id')
             ->selectRaw('*,candidatos.created_at as date')
-            //->where('status_desc','')
             ->*/orderBy('candidatos.created_at','asc')
+            ->where('controle_cand',1)
             ->whereRaw('status_desc IS NULL')
             ->paginate(20);
             //dd($candidato);
