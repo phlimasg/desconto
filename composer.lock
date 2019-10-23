@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "333c00f58906641924e76d4231c8adb0",
@@ -1048,19 +1048,20 @@
         },
         {
             "name": "maatwebsite/excel",
-            "version": "3.1.3",
+            "version": "3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Maatwebsite/Laravel-Excel.git",
-                "reference": "74be22caef59b3479465008f34cdbf231aae58ac"
+                "reference": "d5e51dca5ed845c1ce605a7a1d9882d5b57e270d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/74be22caef59b3479465008f34cdbf231aae58ac",
-                "reference": "74be22caef59b3479465008f34cdbf231aae58ac",
+                "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/d5e51dca5ed845c1ce605a7a1d9882d5b57e270d",
+                "reference": "d5e51dca5ed845c1ce605a7a1d9882d5b57e270d",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "illuminate/support": "5.5.* || 5.6.* || 5.7.*",
                 "php": "^7.0",
                 "phpoffice/phpspreadsheet": "^1.4"
@@ -1110,7 +1111,7 @@
                 "php",
                 "phpspreadsheet"
             ],
-            "time": "2018-11-01T10:33:16+00:00"
+            "time": "2019-01-30T19:01:33+00:00"
         },
         {
             "name": "markbaker/complex",

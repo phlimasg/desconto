@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\manager;
 
+use App\Exports\CandidatoExport;
 use App\Model\candidato;
 use App\Model\candidatos_irmao;
 use App\Model\composicaoFamiliar;
@@ -94,6 +95,7 @@ class candidatoController extends Controller
     }
     public function relatorioSave(Request $request)
     {
+        return Excel::download(new CandidatoExport($request), 'Relatório - '.date("d-m-Y").'.xlsx');
         $cand = candidato::select('id_cand', 'nome_cand', 'desc_aut', 'updated_at')->where('status_id', $request->id)
             ->whereBetween('updated_at', [$request->dt_ini, $request->dt_fim])
             ->orderBy('updated_at')
