@@ -21,7 +21,7 @@ class CandidatoExport implements FromCollection
         return candidato::select('id_cand', 'nome_cand', 'desc_aut', 'updated_at')
         ->where('status_id', $this->request->id)
         ->whereRaw('updated_at BETWEEN "'.$this->request->dt_ini.'" and "'.$this->request->dt_fim.'"')
-        ->orderBy('updated_at')
+        ->orderBy('nome_cand')
         ->get();
     }
 }
