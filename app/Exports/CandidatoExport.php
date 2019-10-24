@@ -5,9 +5,10 @@ namespace App\Exports;
 use App\Model\candidato;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class CandidatoExport implements FromCollection, WithHeadings
+class CandidatoExport implements FromCollection, WithHeadings, ShouldAutoSize
 {
     /**
     * @return \Illuminate\Support\Collection
