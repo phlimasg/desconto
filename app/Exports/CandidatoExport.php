@@ -5,8 +5,9 @@ namespace App\Exports;
 use App\Model\candidato;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class CandidatoExport implements FromCollection
+class CandidatoExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -15,9 +16,17 @@ class CandidatoExport implements FromCollection
     {
         $this->request = $request;
     }
-    public function collection()
+    public function headings(): array
     {
-        
+        return [
+            '#',
+            'Nome',
+            'Desconto em %',
+            'Dt. Autorização'            
+        ];
+    }
+    public function collection()
+    {        
         return candidato::select('id_cand', 'nome_cand', 'desc_aut', 'updated_at')
         ->where('status_id', $this->request->id)
         ->whereRaw('updated_at BETWEEN "'.$this->request->dt_ini.'" and "'.$this->request->dt_fim.'"')
