@@ -42,7 +42,7 @@ class acessoController extends Controller
             ->where('ESCOLARIDADE','!=','EDUCACAO INFANTIL')
             ->first();            
         if ($consulta == null){
-            if(date('Y-m-d')>= '2019-11-02'){
+            if(date('Y-m-d')>= '2019-11-01'){
                 $totvs = totvs::where('RA', 'like','%'.$request->acesso)
                     ->whereIn('RA', raAutorizado::select('ra')->where('ra','like','%'.$request->acesso)->get())
                     ->first();
