@@ -24,7 +24,7 @@ class acessoController extends Controller
         // VERIFICA SE JÁ INICIOU O CADASTRO E REDIRECIONA
         $consulta = candidato::where('id_cand',$request->acesso)->first(); 
         if($consulta){
-            if($consulta->controle_cand==1 || $consulta->controle_cand==2)
+            if($consulta->controle_cand==1 || $consulta->status_id==2)
                 return redirect()->route('painel',['id' => $consulta->id_cand]);
 
         }elseif($consulta){
