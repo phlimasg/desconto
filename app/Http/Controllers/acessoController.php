@@ -32,7 +32,7 @@ class acessoController extends Controller
                     $_SESSION['id'] = '00000'.$consulta->id_cand;
                 else
                     $_SESSION['id'] = $consulta->id_cand;
-                return redirect()->route('fIndex',['id' => $_SESSION['id']]);
+                return redirect()->route('cIndex',['id' => $_SESSION['id']]);
             }
 
         }elseif($consulta){
