@@ -47,7 +47,7 @@ Route::group(['prefix'=>'manager/','middleware' =>'auth'], function (){
     Route::post('{id}/liberar', 'manager\raAutorizaController@save')->name('salvarliberar');
     Route::get('{id}/excluir/{id_ra}', 'manager\raAutorizaController@destroy');
     Route::get('{id}/status/{id_status}', 'manager\indexController@status')->name('status');
-    Route::post('{id}/search', 'manager\indexController@search')->name('search');
+    Route::any('{id}/search', 'manager\indexController@search')->name('search');
     Route::get('{id}/user', 'manager\userController@index')->name('user');
     Route::post('{id}/user', 'manager\userController@create');
     Route::get('{id}/candidato/{mat}', 'manager\candidatoController@index')->name('mCandidato');
